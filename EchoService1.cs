@@ -26,14 +26,18 @@ namespace SocketConcurrent
 
             string message = sr.ReadLine();
             string answer;
-            while (message != null && message != "")
-            {
-                Console.WriteLine("Client: " + message);
-                answer = message.ToUpper();
-                sw.WriteLine(answer);
-                message = sr.ReadLine();
+            sw.Write("HTTP/1.0 200 OK \r\n");
+            sw.Write("\r\n");
+            sw.WriteLine("Message");
+            sw.WriteLine("Hello");
+            //while (message != null && message != "")
+            //{
+            //    Console.WriteLine("Client: " + message);
+            //    answer = message.ToUpper();
+            //    sw.WriteLine(answer);
+            //    message = sr.ReadLine();
 
-            }
+            //}
             connectionSocket.Close();
         }
 
