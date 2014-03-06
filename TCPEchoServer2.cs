@@ -15,11 +15,8 @@ namespace SocketConcurrent
         {
             IPAddress ip = IPAddress.Parse("127.0.0.1");
             TcpListener serverSocket = new TcpListener(ip, 6789);
-
             //TcpListener serverSocket = new TcpListener(6789);
             serverSocket.Start();
-
-
             while (true)
             {
                 Socket connectionSocket = serverSocket.AcceptSocket();
@@ -27,14 +24,10 @@ namespace SocketConcurrent
                 EchoService service = new EchoService(connectionSocket);
                 Thread myThread = new Thread(new ThreadStart(service.DoIt));
                 myThread.Start();
-
                 //Task.Factory.StartNew(service.doIt);
                 // or use delegates Task.Factory.StartNew() => service.DoIt();
-             }
-
-
+            }
             serverSocket.Stop();
         } 
-        
     }
 }

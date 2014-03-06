@@ -11,7 +11,6 @@
 //    class EchoService1
 //    {
 //        private TcpClient connectionSocket;
-
 //        public EchoService1(TcpClient connectionSocket)
 //        {
 //             TODO: Complete member initialization
@@ -23,7 +22,6 @@
 //            StreamReader sr = new StreamReader(ns);
 //            StreamWriter sw = new StreamWriter(ns);
 //            sw.AutoFlush = true; // enable automatic flushing
-
 //            string message = sr.ReadLine();
 //            string answer;
 //            sw.Write("HTTP/1.0 200 OK \r\n");
@@ -39,7 +37,6 @@
 //            }
 //            connectionSocket.Close();
 //        }
-
 //        public string answer { get; set; }
 //    }
 //}
@@ -61,7 +58,6 @@ namespace SocketConcurrent
     {
         private TcpClient connectionSocket;
         private static readonly string RootCatalog = "c:/temp/";
-
         public EchoService1(TcpClient connectionSocket)
         {
             // TODO: Complete member initialization
@@ -73,26 +69,19 @@ namespace SocketConcurrent
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true; // enable automatic flushing
-
             string message = sr.ReadLine();
             Console.WriteLine(message);
-
-            string[] words = message.Split('/');
+            string [] words = message.Split(' ');
             message = words[1];
-            words = message.Split(' ');
-            message = words[0];
+
 
             Console.WriteLine(message);
-
             string path = RootCatalog + message;
-
             if (File.Exists(path))
             {
                 //    message = sr.ReadLine();
                 sw.Write("HTTP/1.0 200 OK \r\n");
                 sw.Write("\r\n");
-
-
                 using (FileStream fs = File.OpenRead(path))
                 {
                     byte[] b = new byte[1024];
@@ -107,10 +96,8 @@ namespace SocketConcurrent
             {
                 sw.Write("Can't find the requested file");
             }
-
             connectionSocket.Close();
         }
-
         public string answer { get; set; }
     }
 }

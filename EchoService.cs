@@ -11,7 +11,6 @@ namespace SocketConcurrent
     class EchoService
     {
         private Socket connectionSocket;
-
         public EchoService(Socket connectionSocket)
         {
             // TODO: Complete member initialization
@@ -23,7 +22,6 @@ namespace SocketConcurrent
             StreamReader sr = new StreamReader(ns);
             StreamWriter sw = new StreamWriter(ns);
             sw.AutoFlush = true; // enable automatic flushing
-
             string message = sr.ReadLine();
             string answer;
             while (message != null && message != "")
@@ -32,11 +30,9 @@ namespace SocketConcurrent
                 answer = message.ToUpper();
                 sw.WriteLine(answer);
                 message = sr.ReadLine();
-
             }
             connectionSocket.Close();
         }
-
         public string answer { get; set; }
     }
 }
